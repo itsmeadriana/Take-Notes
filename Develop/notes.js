@@ -28,10 +28,8 @@ function validateNewNote(note) {
 }
 
 function deleteNote(index, notesArray) {    
-    notesArray.splice(index, 1) 
-//     {
-         
-// };
+    notesArray.splice(index, 1);
+
     fs.writeFileSync(
         path.join(__dirname, '../data/notes.json'),
         JSON.stringify( { notes: notesArray }, null, 2)

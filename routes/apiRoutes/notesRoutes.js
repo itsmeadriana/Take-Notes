@@ -3,13 +3,7 @@ const { notes } = require('../../data/notes.json');
 const { writeNewNote, findNoteById, validateNewNote, deleteNote } = require('../../Develop/notes.js');
 
 router.get('/notes', (req, res) => {
-    let results = notes;
-    if (req.query) {
-        res.json(results);
-    }
-    else {
-        res.send(406)
-    }
+    res.json(notes);
 });
 
 router.get('/notes/:id', (req, res) => {
@@ -18,12 +12,11 @@ router.get('/notes/:id', (req, res) => {
         res.json(result);
     }
     else {
-        res.send(405);
+        res.send(404);
     }
 });
 
 router.post('/notes', (req, res) => {
-    console.log(req.body);
     req.body.id = notes.length.toString();
 
     if (!validateNewNote(req.body)) {
