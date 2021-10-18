@@ -2,7 +2,8 @@ const fs = require('fs');
 const {
     findNoteById,
     writeNewNote,
-    validateNewNote
+    validateNewNote,
+    deleteNote
 } = require('../Develop/notes.js');
 const { notes } = require('../data/notes.json');
 const { hasUncaughtExpressCaptureCallback } = require('process');
@@ -62,3 +63,22 @@ test("validates new note addition", () => {
     expect(result2).toBe(false);
 
 });
+
+test("deletes note by id", () => {
+    const startingNotesToSelf = [
+        {
+            id: "4",
+            title: "Sunday brunch",
+            text: "eggs, pancakes, raspberry jam, blueberry compote, vegan lattes. Oat milk or almond milk?"
+        },
+        {
+            id: "11",
+            title: "Mantras",
+            text: "You are worthy. You are enough. You matter. Welcome kindness into your life by being kind."
+        }
+    ];
+
+    const result = deleteNote(0, startingNotesToSelf);
+
+    expect(result[0].title).toBe("Mantras");
+})
